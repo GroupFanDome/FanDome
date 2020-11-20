@@ -118,3 +118,65 @@ Fandome is a social media app that celebrates the engament of fans in a shared c
 
 ### [BONUS] Interactive Prototype
 <img src="https://i.imgur.com/4dhcTP5.gif" width=300>
+
+
+## Schema
+
+### Models (For MVP->Minimal Viable Product)
+
+User
+|   Property   |  Type    |              Description                           |
+|--------------|----------|----------------------------------------------------|
+| objectId     | String   | unique id for the user object(default)   	       |  
+| FirstName    | String   | user first name                     	             |  
+| LastName     | String   | user last name                      	             |    
+| username     | String   | name used for user whilst using app   	          |
+| password     | String   | used to create/login to account              	    |
+| email        | String   | used to create/login to account               	    |
+| following    | Array    | list of Fandome object ids that the user follows   |  
+| createdAt    | DateTime | date when user account was created(default)        |
+| updatedAt    | DateTime | date when user account was last updated (default)  |
+
+Post
+|   Property      |          Type             |            Description                    |
+|-----------------|---------------------------|-------------------------------------------|
+| objectId        | String                    | unique id for the Post object(default)    |  
+| userPointer     | Pointer to User object    | identify creator of post                  |  
+| fandomePointer  | Pointer to Fandome object | identify which fandome post belongs to    |   
+| postDescription | String                    | text for post added by User               |
+| createdAt       | DateTime                  | date when post was created(default)       |
+| updatedAt       | DateTime                  | date when post was last updated (default) |
+
+Fandome
+|   Property         |  Type    |          Description               			      |
+|--------------------|----------|---------------------------------------------------|
+| objectId           | String   | unique id for the Fandome object(default)  		   |  
+| fandomeDescription | String   | text description of fandome                    	|  
+| fandomeName        | String   | name of fandome                   				      |     
+| createdAt          | DateTime | date when fandome was created(default)            |
+| updatedAt          | DateTime | date when fandome was last updated (default) 	   |
+
+
+
+## Networking
+### List of network request by screen (for MVP-> Minimal Viable Product)
+
+* Login screen
+    * (Read/GET) Query logged in User object [hit 1 module User]
+* Register Screen
+    * (Create/Post) Create a new User object [hit 1 module User]
+* Feed
+    * (Read/GET) Query the fids of the fandoms the user follows [hit 1 module User]
+    * (Read/GET) Query the post from the fandoms the user follows [hit 1 module Post]
+* Creation
+    * (Create/POST) Create a new post object [hit 1 module Post]
+* User account
+	* (Read/GET) Query logged in user object [hit 1 module User]
+	* (Read/Get) Query all posts the User have created [hit 1 module post]
+* Search
+    * (Read/Get) Query all the matching Fandoms based off search criteria(fandome name) [hit 1 module Fandome]
+* Fandom Hub Page
+    * (Read/Get) Query the selected Fandom object [hit 1 module Fandome]
+    * (Read/Get) Query all the post where belonging to the selected Fandome object [hit 1 module Post]
+
+
