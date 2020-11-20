@@ -110,14 +110,10 @@ Fandome is a social media app that celebrates the engament of fans in a shared c
 <img src="https://i.imgur.com/wIFQRvZ.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="https://i.imgur.com/0g6jV26.png" width=100>
-<img src="https://i.imgur.com/TjgvEZv.png" width=100>
-<img src="https://i.imgur.com/jTJQ6PP.png" width=100>
-<img src="https://i.imgur.com/Lqjn0d9.png" width=100>
-<img src="https://i.imgur.com/0iEIfyj.png" width=100>
-<img src="https://i.imgur.com/d7Mzwwj.png" width=100>
-<img src="https://i.imgur.com/Waa4LsX.png" width=100>
-<img src="https://i.imgur.com/pmQAkDV.png" width=100>
+<img src="https://i.imgur.com/0g6jV26.png" width=100> <img src="https://i.imgur.com/TjgvEZv.png" width=100>
+<img src="https://i.imgur.com/jTJQ6PP.png" width=100> <img src="https://i.imgur.com/Lqjn0d9.png" width=100>
+<img src="https://i.imgur.com/0iEIfyj.png" width=100> <img src="https://i.imgur.com/d7Mzwwj.png" width=100>
+<img src="https://i.imgur.com/Waa4LsX.png" width=100> <img src="https://i.imgur.com/pmQAkDV.png" width=100>
 
 ### [BONUS] Interactive Prototype
 <img src="https://i.imgur.com/4dhcTP5.gif" width=300>
