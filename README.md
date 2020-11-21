@@ -195,15 +195,94 @@ Fandome
 * Feed
     * (Read/GET) Query the fids of the fandoms the user follows [hit 1 module User]
     * (Read/GET) Query the post from the fandoms the user follows [hit 1 module Post]
+    ```java
+    ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+    query.include(user);
+    query.include(fandomeid);
+    query.addDescendingOrder(Post.KEY_CREATED_AT);
+    query.findInBackground(new FindCallback<Post>() {
+    @Override
+    public void done(List<Post> posts, ParseException e) {
+    if(e != null){
+    //issue getting posts
+    return;
+    }
+    //successful then iterate through posts
+    //notify adapter
+    });
+    ```
 * Creation
     * (Create/POST) Create a new post object [hit 1 module Post]
+    ```java
+    Post post = new Post();
+    post.setDescription(description);
+    post.setUser(currentUser);
+    post.saveInBackground(new SaveCallback() {
+    @Override
+    public void done(ParseException e) {
+	if(e != null){
+	// error whilst saving post
+	}
+	//success
+	// go back to initial screen
+	}
+    });
+    ```
 * User account
-	* (Read/GET) Query logged in user object [hit 1 module User]
-	* (Read/Get) Query all posts the User have created [hit 1 module post]
+    *(Read/GET) Query logged in user object [hit 1 module User]
+    * (Read/Get) Query all posts the User have created [hit 1 module post]     
+    ```java
+    ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+    query.include(user);
+    query.whereEqualTo(userid, ParseUser.getCurrentUser());
+    query.addDescendingOrder(Post.KEY_CREATED_AT);
+    query.findInBackground(new FindCallback<Post>() {
+    @Override
+    public void done(List<Post> posts, ParseException e) {
+	if(e != null){
+	    // issue getting posts
+	}
+	//successful then iterate through posts
+	for(Post post:posts){
+	   //do something
+	}
+	//notify adapter
+    }
+    });
+    ```
 * Search
     * (Read/Get) Query all the matching Fandoms based off search criteria(fandome name) [hit 1 module Fandome]
+    ```java
+    ParseQuery<Fandom> query = ParseQuery.getQuery("Fandom");
+    ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+    userQuery.whereMatchesKeyInQuery("name", fandomName);
+    userQuery.findInBackground(new FindCallback<Fandom>() 
+    void done(List<Fandome> results, ParseException e) {
+    // results has the list relatted fandom to search name
+    }
+    });
+    ```
 * Fandom Hub Page
     * (Read/Get) Query the selected Fandom object [hit 1 module Fandome]
     * (Read/Get) Query all the post where belonging to the selected Fandome object [hit 1 module Post]
+    ```java
+    ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+    query.include(fandom);
+    query.whereEqualTo(fandomid, ParseUser.getCurrent());
+    query.addDescendingOrder(Post.KEY_CREATED_AT);
+    query.findInBackground(new FindCallback<Post>() {
+    @Override
+    public void done(List<Post> posts, ParseException e) {
+	if(e != null){
+	    // issue getting posts
+	}
+	//successful then iterate through posts
+	for(Post post:posts){
+	   //do something
+	}
+	//notify adapter
+    }
+    });
+    ```
 
 
