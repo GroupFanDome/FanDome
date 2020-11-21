@@ -164,19 +164,34 @@ Fandome
     * (Read/GET) Query logged in User object [hit 1 module User]
     ```java
     ParseUser.logInInBackground(username, password,new LogInCallback(){
-    	@Override
-        public void done(ParseUser user, ParseException e) {
-		if(e != null){
-                    // issue with login
-                }
-                //if login successful then navigate to main activity
-                goMainActivity();
-          }
-      });
-      ```
-	
+    @Override
+    public void done(ParseUser user, ParseException e) {
+    if(e != null){
+    // issue with login
+    }
+    //if login successful then navigate to main activity
+    goMainActivity();
+    }
+    });
+    ```	
 * Register Screen
     * (Create/Post) Create a new User object [hit 1 module User]
+    ```java
+    ParseUser user = new ParseUser();
+    // Set core properties
+    user.setUsername(username);
+    user.setPassword(password);
+    user.signUpInBackground(new SignUpCallback() {
+    @Override
+    public void done(ParseException e) {
+    if (e != null) {
+    //issue with sign up
+    }
+    //if sign up successful then navigate to main activity
+    goMainActivity();
+    }
+    });
+    ```
 * Feed
     * (Read/GET) Query the fids of the fandoms the user follows [hit 1 module User]
     * (Read/GET) Query the post from the fandoms the user follows [hit 1 module Post]
