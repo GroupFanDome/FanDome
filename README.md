@@ -163,17 +163,17 @@ Fandome
 * Login screen
     * (Read/GET) Query logged in User object [hit 1 module User]
     ```java
-    	ParseUser.logInInBackground(username, password,new LogInCallback(){
-	@Override
+    ParseUser.logInInBackground(username, password,new LogInCallback(){
+    	@Override
         public void done(ParseUser user, ParseException e) {
-        	if(e != null){
+		if(e != null){
                     // issue with login
                 }
                 //if login successful then navigate to main activity
                 goMainActivity();
-            }
-        });
-```
+          }
+      });
+      ```
 	
 * Register Screen
     * (Create/Post) Create a new User object [hit 1 module User]
