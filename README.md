@@ -127,11 +127,11 @@ User
 |   Property   |  Type    |              Description                           |
 |--------------|----------|----------------------------------------------------|
 | objectId     | String   | unique id for the user object(default)   	       |  
-| FirstName    | String   | user first name                     	             |  
-| LastName     | String   | user last name                      	             |    
-| username     | String   | name used for user whilst using app   	          |
-| password     | String   | used to create/login to account              	    |
-| email        | String   | used to create/login to account               	    |
+| FirstName    | String   | user first name                     	       |  
+| LastName     | String   | user last name                      	       |    
+| username     | String   | name used for user whilst using app   	       |
+| password     | String   | used to create/login to account                    |
+| email        | String   | used to create/login to account                    |
 | following    | Array    | list of Fandome object ids that the user follows   |  
 | createdAt    | DateTime | date when user account was created(default)        |
 | updatedAt    | DateTime | date when user account was last updated (default)  |
@@ -147,13 +147,13 @@ Post
 | updatedAt       | DateTime                  | date when post was last updated (default) |
 
 Fandome
-|   Property         |  Type    |          Description               			      |
+|   Property         |  Type    |          Description               		    |
 |--------------------|----------|---------------------------------------------------|
-| objectId           | String   | unique id for the Fandome object(default)  		   |  
-| fandomeDescription | String   | text description of fandome                    	|  
-| fandomeName        | String   | name of fandome                   				      |     
+| objectId           | String   | unique id for the Fandome object(default)         |  
+| fandomeDescription | String   | text description of fandome                       |  
+| fandomeName        | String   | name of fandome                        	    |     
 | createdAt          | DateTime | date when fandome was created(default)            |
-| updatedAt          | DateTime | date when fandome was last updated (default) 	   |
+| updatedAt          | DateTime | date when fandome was last updated (default) 	    |
 
 
 
@@ -162,6 +162,19 @@ Fandome
 
 * Login screen
     * (Read/GET) Query logged in User object [hit 1 module User]
+    ```java
+    	ParseUser.logInInBackground(username, password,new LogInCallback(){
+	@Override
+        public void done(ParseUser user, ParseException e) {
+        	if(e != null){
+                    // issue with login
+                }
+                //if login successful then navigate to main activity
+                goMainActivity();
+            }
+        });
+```
+	
 * Register Screen
     * (Create/Post) Create a new User object [hit 1 module User]
 * Feed
