@@ -126,34 +126,44 @@ Fandome is a social media app that celebrates the engament of fans in a shared c
 User
 |   Property   |  Type    |              Description                           |
 |--------------|----------|----------------------------------------------------|
-| objectId     | String   | unique id for the user object(default)   	       |  
-| FirstName    | String   | user first name                     	       |  
-| LastName     | String   | user last name                      	       |    
-| username     | String   | name used for user whilst using app   	       |
-| password     | String   | used to create/login to account                    |
-| email        | String   | used to create/login to account                    |
-| following    | Array    | list of Fandome object ids that the user follows   |  
+| objectId     | String   | unique id for the user object(default)   	       |
+| username     | String   | name used for user whilst using app  (required)    |
+| password     | String   | used to create/login to account     (required)     | 
+| email        | String   | used to create/login to account                    | 
 | createdAt    | DateTime | date when user account was created(default)        |
 | updatedAt    | DateTime | date when user account was last updated (default)  |
+| firstName    | String   | user first name                     	       |  
+| lastName     | String   | user last name                      	       |    
 
 Post
 |   Property      |          Type             |            Description                    |
 |-----------------|---------------------------|-------------------------------------------|
 | objectId        | String                    | unique id for the Post object(default)    |  
-| userPointer     | Pointer to User object    | identify creator of post                  |  
-| fandomePointer  | Pointer to Fandome object | identify which fandome post belongs to    |   
-| postDescription | String                    | text for post added by User               |
 | createdAt       | DateTime                  | date when post was created(default)       |
 | updatedAt       | DateTime                  | date when post was last updated (default) |
+| user            | Pointer to User object    | identify creator of post  (required)      |  
+| fandome         | Pointer to Fandome object | identify which fandome post belongs to    |   
+| body            | String                    | text for post added by User (required)    |
 
 Fandome
 |   Property         |  Type    |          Description               		    |
 |--------------------|----------|---------------------------------------------------|
-| objectId           | String   | unique id for the Fandome object(default)         |  
-| fandomeDescription | String   | text description of fandome                       |  
-| fandomeName        | String   | name of fandome                        	    |     
+| objectId           | String   | unique id for the Fandome object(default)         | 
 | createdAt          | DateTime | date when fandome was created(default)            |
-| updatedAt          | DateTime | date when fandome was last updated (default) 	    |
+| updatedAt          | DateTime | date when fandome was last updated (default) 	    | 
+| description        | String   | text description of fandome  (required)           |  
+| name               | String   | name of fandome       (required)                  | 
+| keyword            | String   | identifies fandome type (ie.movie,tv,book...) (required)    | 
+
+Following
+|      Property      |  Type                     |               Description              		  |
+|--------------------|---------------------------|------------------------------------------------|
+| objectId           | String                    | unique id for the following object(default)    |
+| createdAt          | DateTime                  | date when following was created(default)       |
+| updatedAt          | DateTime                  | date when following was last updated (default) |  
+| user               | Pointer to User object    | identify which user is the follower (required)           |  
+| fandome            | Pointer to Fandome object | identify which fandome the user follows  (required)      |    
+
 
 
 
@@ -193,7 +203,7 @@ Fandome
     });
     ```
 * Feed
-    * (Read/GET) Query the fids of the fandoms the user follows [hit 1 module User]
+    * (Read/GET) Query the ids of the fandoms the user follows [hit 1 module Following]
     * (Read/GET) Query the post from the fandoms the user follows [hit 1 module Post]
     ```java
     ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
