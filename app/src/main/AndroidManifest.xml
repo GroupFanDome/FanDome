@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--   Then enter Register Screen if applicable     -->
+        <!--   Then enter Register Screen if need be     -->
         <activity android:name=".RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
