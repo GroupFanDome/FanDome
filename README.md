@@ -298,4 +298,4 @@ Following
   ```
 ## Build-Progress
 
-<img src="/flix.gif" width=100>
+<img src="/flix.gif" width=300 height=350>
