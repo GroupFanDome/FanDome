@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0074FC"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/fandomeIcon"
+        android:layout_width="201dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fandome_image_darkblue"/>
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/courgette_regular"
+        android:text="fandome"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fandomeIcon" />
+
+
+    <TextView
+        android:id="@+id/firstNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fandomeIcon"
+        android:layout_marginLeft="80dp"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/firstNameInputBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextview_border"
+        android:hint="First name"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A1FFFFFF"
+        android:textSize="12sp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameTitle"
+        app:layout_constraintEnd_toStartOf="@+id/lastNameInputBox"/>
+
+    <EditText
+        android:id="@+id/lastNameInputBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextview_border"
+        android:hint="Last name"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A1FFFFFF"
+        android:textSize="12sp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/firstNameInputBox"
+        app:layout_constraintTop_toBottomOf="@id/firstNameInputBox" />
+
+    <EditText
+        android:id="@+id/usernameInputBox"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittextview_border"
+        android:hint="Sign up with a username"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A1FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <TextView
+        android:id="@+id/usernameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="391dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/usernameInputBox"
+        app:layout_constraintTop_toBottomOf="@+id/fandomeIcon"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Username" />
+
+    <EditText
+        android:id="@+id/emailInputBox"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittextview_border"
+        android:hint="Sign up with an email"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A1FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.606" />
+
+    <TextView
+        android:id="@+id/passwordTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="245dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/passwordInputBox"
+        app:layout_constraintTop_toBottomOf="@+id/emailTitle"
+        tools:text="Password" />
+
+    <TextView
+        android:id="@+id/emailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="54dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/passwordTitle"
+        app:layout_constraintStart_toStartOf="@+id/emailInputBox"
+        app:layout_constraintTop_toBottomOf="@+id/fandomeIcon"
+        tools:text="Email" />
+
+    <EditText
+        android:id="@+id/passwordInputBox"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittextview_border"
+        android:hint="Sign up with a password"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A1FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInputBox"
+        app:layout_constraintVertical_bias="0.329" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="28dp"
+        android:background="#FFFFFF"
+        android:text="SIGN UP"
+        android:textColor="#132274"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputBox" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="Already have an account? \nSign in"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
