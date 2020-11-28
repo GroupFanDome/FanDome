@@ -5,6 +5,7 @@
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
+5. [Build Progress](#Build-Progress)
 
 ## Overview
 ### Description
@@ -293,6 +294,9 @@ Following
 	//notify adapter
     }
     });
-    ```
+  
+  ```
+#Build-Progress
 
+<img src="https://imgur.com/a/0zvLxq5" width=100>
 
