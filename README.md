@@ -298,5 +298,4 @@ Following
   ```
 ## Build-Progress
 
-<img src="https://imgur.com/a/0zvLxq5.gif" width=100>
-
+<img src="/flix.gif" width=100>
