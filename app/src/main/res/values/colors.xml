@@ -6,7 +6,9 @@
 
     <color name="main_blue">#1FADEA</color>
     <color name="main_blue_dark">#1579A3</color>
-    <color name="background_blue">#F0FBFF</color>
+    <color name="background_white">#F0FBFF</color>
+    <color name="main_blue_light">#e4f5fc</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhiteTransparent">#80FFFFFF</color>
+    <color name="medium_gray">#ffaab8c2</color>
 </resources>

@@ -1,15 +1,14 @@
-package com.example.fandome;
+package com.example.fandome.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.example.fandome.R;
 import com.example.fandome.fragments.HomeFragment;
 import com.example.fandome.fragments.ProfileFragment;
 import com.example.fandome.fragments.SearchFragment;
@@ -29,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
         setContentView(R.layout.activity_main);
-
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
