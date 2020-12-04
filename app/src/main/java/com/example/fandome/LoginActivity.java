@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
-//        setContentView(R.layout.activity_login);
-        setContentView(R.layout.fragment_profile);
+        setContentView(R.layout.activity_login);
+//        setContentView(R.layout.fragment_profile);
 
 
         //checks if user has previously logged on so they can go straight to main activity
