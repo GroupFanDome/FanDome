@@ -88,12 +88,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     //This is where we let our user login in depending on if their login credentials are correct
     private void signinUser(String username, String password){
+        String firstName = firstNameInputBox.getText().toString();
+        String lastName = lastNameInputBox.getText().toString();
         String email = emailInputBox.getText().toString();
 
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
+        user.put("firstName", firstName);
+        user.put("lastName", lastName);
+
         Log.i(TAG, "attempting to log in user " + username);
         user.signUpInBackground(new SignUpCallback() {
             //checking if logging in was an issue and if so then it has an error that we check for
