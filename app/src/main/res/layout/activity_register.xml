@@ -107,6 +107,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A1FFFFFF"
         android:textSize="12sp"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTitle" />
@@ -145,16 +146,17 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A1FFFFFF"
         android:textSize="12sp"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTitle"/>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/rounded_button_bg"
         android:text="SIGN UP"
         android:textColor="#132274"
         android:textSize="18sp"
@@ -163,15 +165,15 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/logInText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:text="Already have an account? \nSign in"
+        android:text="Already have an account? \nLog in"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

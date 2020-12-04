@@ -59,21 +59,20 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#A1FFFFFF"
         android:textSize="12sp"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTitle" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="84dp"
-        android:background="#FFFFFF"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/rounded_button_bg"
         android:text="LOGIN"
         android:textColor="#132274"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInputBox" />
 
@@ -81,13 +80,12 @@
         android:id="@+id/registerButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="56dp"
-        android:background="#FFFFFF"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/rounded_button_bg"
         android:text="REGISTER"
         android:textColor="#1B2666"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/loginButton"
-        app:layout_constraintTop_toTopOf="@+id/loginButton" />
+        app:layout_constraintTop_toTopOf="@+id/signUpButton" />
 
     <ImageView
         android:id="@+id/fandomeIcon"
