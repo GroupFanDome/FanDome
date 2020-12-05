@@ -24,17 +24,17 @@ Fandome is a social media app that celebrates the engament of fans in a shared c
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* Users can create a new account
-* Users can log in
-* Users can create a new text post
-* Users can post to their profile or to a specifc Fandom Hub
-* Users can view recent posts of fandoms they follow in their feed
-* Users can view their own recent posts in their feed
-* Users can search for Fandom hubs
-* Users can enter a Fandom hub page after search
-* Users can view a Fandom hub page
-* Two available fandom hubs: movies and books
-* Users can join a fandom hub
+- [x]  Users can create a new account
+- [x]  Users can log in
+- []  Users can create a new text post
+- []  Users can post to their profile or to a specifc Fandom Hub
+- [x]  Users can view recent posts of fandoms they follow in their feed
+- [x]  Users can view their own recent posts in their feed
+- []  Users can search for Fandom hubs
+- []  Users can enter a Fandom hub page after search
+- [] Users can view a Fandom hub page
+- [] Two available fandom hubs to join: movies and books
+- [] Users can join a fandom hub
 
 **Optional Nice-to-have Stories**
 * Users can direct message each other
