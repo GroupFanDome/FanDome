@@ -7,23 +7,27 @@
     android:orientation="vertical"
     android:background="#FFD4F1FE"
     tools:context=".fragments.ProfileFragment">
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="#1FADEA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <LinearLayout
+        android:background="#1FADEA" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,12 +51,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="85dp"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="20dp"
+                    android:elevation="1dp"
                     app:contentPaddingBottom="10dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:paddingTop="15dp">
+                    app:contentPaddingLeft="10dp"
+                    app:contentPaddingRight="10dp"
+                    app:contentPaddingTop="10dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -82,34 +86,23 @@
                             android:layout_marginTop="20dp"
                             android:text="Fandoms I follow:"
                             android:textSize="20sp" />
+                    <!-- Start of fandom hub scroll view -->
                         <HorizontalScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="130dp"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal" >
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <Button
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:background="#FFFFEB3B" />
-                                <Button
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_marginStart="20dp"
-                                    android:background="#FFFFEB3B" />
-                                <Button
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_marginStart="20dp"
-                                    android:background="#FFFFEB3B" />
-                                <Button
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:layout_marginStart="20dp"
-                                    android:background="#FFFFEB3B" />
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvFandomHubs"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:padding="8dp" />
+
                             </LinearLayout>
                         </HorizontalScrollView>
                     </LinearLayout>
@@ -118,11 +111,12 @@
                     android:id="@+id/rvPosts"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="8dp" />
-
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
 
         </RelativeLayout>
-    </LinearLayout>
 
+    </LinearLayout>
+</ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>

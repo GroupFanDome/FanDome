@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#0074FC"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context=".activities.RegisterActivity">
 
     <ImageView
         android:id="@+id/fandomeIcon"

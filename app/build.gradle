@@ -40,6 +40,9 @@ dependencies {
     //build to help with profile picture shape form and declarations
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
-
+    //these following three lines have to do with importing glide so we can see images in the app
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
 }

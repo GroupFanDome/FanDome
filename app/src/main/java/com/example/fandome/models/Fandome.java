@@ -8,6 +8,7 @@ public class Fandome extends ParseObject  {
     public static final String KEY_NAME="name";
     public static final String KEY_DESCRIPTION="description";
     public static final String KEY_KEYWORD="keyword";
+    public static final String KEY_IMAGEURL="imageURL";
 
     public String getName(){
         return getString(KEY_NAME);
@@ -30,4 +31,10 @@ public class Fandome extends ParseObject  {
         put(KEY_KEYWORD,keyword);
     }
 
+    public String getImageURL(){
+        return getString(KEY_IMAGEURL);
+    }
+    public void setImageURL(String imageURL){
+        put(KEY_IMAGEURL, imageURL);
+    }
 }

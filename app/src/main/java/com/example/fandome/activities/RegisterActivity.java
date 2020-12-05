@@ -1,4 +1,4 @@
-package com.example.fandome;
+package com.example.fandome.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,9 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fandome.activities.MainActivity;
-import com.example.fandome.fragments.HomeFragment;
-import com.parse.LogInCallback;
+import com.example.fandome.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
