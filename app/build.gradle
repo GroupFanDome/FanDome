@@ -37,7 +37,7 @@ dependencies {
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
-    implementation 'com.android.support:recyclerview-v7:+'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     //build to help with profile picture shape form and declarations
     implementation 'de.hdodenhof:circleimageview:2.2.0'
@@ -46,5 +46,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
 }

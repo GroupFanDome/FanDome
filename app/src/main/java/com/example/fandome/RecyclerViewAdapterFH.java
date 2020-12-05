@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.fandome.models.Fandome;
+import com.example.fandome.models.Following;
 import com.example.fandome.models.Post;
+import com.parse.ParseFile;
 
 
 import java.util.List;
@@ -28,15 +30,15 @@ import java.util.List;
 public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdapterFH.ViewHolder>{
 
     private Context context;
-    private List<Fandome> fandomeHub;
+    private List<Following> fandomeHub;
     RequestOptions options;
 
-    public RecyclerViewAdapterFH(Context context, List<Fandome> fandome) {
+    public RecyclerViewAdapterFH(Context context, List<Following> following) {
         this.context = context;
-        this.fandomeHub = fandomeHub;
+        this.fandomeHub = following;
 
-        //Request option for Glide
-        this.options = new RequestOptions().centerCrop().placeholder(R.drawable.bg_login_gradient);
+//        //Request option for Glide
+//        this.options = new RequestOptions().centerCrop().placeholder(R.drawable.bg_login_gradient);
     }
 
     @NonNull
@@ -48,11 +50,11 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapterFH.ViewHolder holder, int position) {
-        holder.fandomHubTitle.setText(fandomeHub.get(position).getName());
-        Glide.with(context).load(fandomeHub.get(position).getImageURL()).apply(options).into(holder.bg_login_gradient);
+//        holder.fandomHubTitle.setText(fandomeHub.get(position).getName());
+//        Glide.with(context).load(fandomeHub.get(position).getImageURL()).apply(options).into(holder.bg_login_gradient);
 
-        Fandome fandome = fandomeHub.get(position);
-        holder.bind(fandome);
+        Following following= fandomeHub.get(position);
+        holder.bind(following);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
         return fandomeHub.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView bg_login_gradient;
         ImageButton fandomHubIcon;
         TextView fandomHubTitle;
@@ -70,10 +72,14 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
             fandomHubIcon = itemView.findViewById(R.id.fandomHubIcon);
             fandomHubTitle = itemView.findViewById(R.id.fandomHubTitle);
         }
-        public void bind(Fandome fandome) {
-            fandomHubTitle.setText(fandome.getName());
+        public void bind(Following following) {
+            fandomHubTitle.setText(following.getFandome().getString("name"));
             //setting image URL
-            fandomHubIcon.setImageURI(Uri.parse("fandome_image"));
+            ParseFile image = following.getParseFile("fandome_image");
+            if(image != null){
+                Glide.with(context).load(image.getUrl()).into(fandomHubIcon);
+            }
+            fandomHubIcon.setClipToOutline(true);
         }
 
     }
@@ -84,7 +90,7 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
         notifyDataSetChanged();
     }
     // Add a list of items -- change to type used
-    public void addAll(List<Fandome> hub) {
+    public void addAll(List<Following> hub) {
         fandomeHub.addAll(hub);
         notifyDataSetChanged();
     }

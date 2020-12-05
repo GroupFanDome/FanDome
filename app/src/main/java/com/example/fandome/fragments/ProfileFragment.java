@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
     //profile hubs info
     private RecyclerView rvFandomHubs;
     private RecyclerViewAdapterFH adapterFH;
-    private List<Fandome> fandomeHub;
+    private List<Following> fandomeHub;
 
 
 
@@ -64,6 +64,8 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvHome = view.findViewById(R.id.rvPosts);
+        rvFandomHubs = view.findViewById(R.id.rvFandomHubs);
+
 
         swipeContainer = view.findViewById(R.id.swipeContainer);
         // Configure the refreshing colors
@@ -95,24 +97,25 @@ public class ProfileFragment extends Fragment {
 
     private void queryHubs() {
         ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
-        Log.i(TAG, "Current user is " + ParseUser.getCurrentUser());
         followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
 //        ParseQuery<Fandome> hubParseQuery = ParseQuery.getQuery(Fandome.class);
 //        hubParseQuery.whereMatchesKeyInQuery(Fandome.KEY_NAME, Following.KEY_FANDOME, followingParseQuery);
-//        hubParseQuery.include(Fandome.KEY_NAME);
-        followingParseQuery.include(Post.KEY_FANDOME);
-//        hubParseQuery.findInBackground(new FindCallback<Fandome>() {
-//            @Override
-//            public void done(List<Fandome> hubs, ParseException e) {
-//                if(e != null){
-//                    Log.e("main", "Issue with getting hubs",e);
-//                    return;
-//                }
-//                // success
-//                adapterFH.clear();
-//                adapterFH.addAll(hubs);
-//            }
-//        });
+        followingParseQuery.include(Following.KEY_FANDOME);
+//        followingParseQuery.include(Fandome.KEY_NAME);
+        followingParseQuery.findInBackground(new FindCallback<Following>() {
+            @Override
+            public void done(List<Following> follows, ParseException e) {
+                if(e != null){
+                    Log.e("main", "Issue with getting list of fandoms the user follows",e);
+                    return;
+                }
+                // success
+                adapterFH.clear();
+                adapterFH.addAll(follows);
+                swipeContainer.setRefreshing(false);
+
+            }
+        });
     }
 
     private void queryPosts() {
