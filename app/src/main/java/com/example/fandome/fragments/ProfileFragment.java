@@ -81,7 +81,7 @@ public class ProfileFragment extends Fragment {
 
         fandomeHub = new ArrayList<>();
         adapterFH = new RecyclerViewAdapterFH(getContext(), fandomeHub);
-        rvFandomHubs .setAdapter(adapterFH);
+        rvFandomHubs.setAdapter(adapterFH);
         rvFandomHubs.setLayoutManager(new LinearLayoutManager(getContext()));
         queryHubs();
 
@@ -95,24 +95,24 @@ public class ProfileFragment extends Fragment {
 
     private void queryHubs() {
         ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
+        Log.i(TAG, "Current user is " + ParseUser.getCurrentUser());
         followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
-        ParseQuery<Fandome> postParseQuery = ParseQuery.getQuery(Fandome.class);
-        postParseQuery.whereMatchesKeyInQuery(Post.KEY_FANDOME, Following.KEY_FANDOME, followingParseQuery);
-        postParseQuery.include(Post.KEY_USER);
-        postParseQuery.include(Post.KEY_FANDOME);
-        postParseQuery.addDescendingOrder(Post.KEY_CREATED_AT);
-        postParseQuery.findInBackground(new FindCallback<Fandome>() {
-            @Override
-            public void done(List<Fandome> hubs, ParseException e) {
-                if(e != null){
-                    Log.e("main", "Issue with getting hubs",e);
-                    return;
-                }
-                // success
-                adapterFH.clear();
-                adapterFH.addAll(hubs);
-            }
-        });
+//        ParseQuery<Fandome> hubParseQuery = ParseQuery.getQuery(Fandome.class);
+//        hubParseQuery.whereMatchesKeyInQuery(Fandome.KEY_NAME, Following.KEY_FANDOME, followingParseQuery);
+//        hubParseQuery.include(Fandome.KEY_NAME);
+        followingParseQuery.include(Post.KEY_FANDOME);
+//        hubParseQuery.findInBackground(new FindCallback<Fandome>() {
+//            @Override
+//            public void done(List<Fandome> hubs, ParseException e) {
+//                if(e != null){
+//                    Log.e("main", "Issue with getting hubs",e);
+//                    return;
+//                }
+//                // success
+//                adapterFH.clear();
+//                adapterFH.addAll(hubs);
+//            }
+//        });
     }
 
     private void queryPosts() {

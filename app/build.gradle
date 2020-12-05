@@ -37,6 +37,8 @@ dependencies {
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
+    implementation 'com.android.support:recyclerview-v7:+'
+
     //build to help with profile picture shape form and declarations
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 

@@ -2,6 +2,7 @@ package com.example.fandome;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -71,7 +73,7 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
         public void bind(Fandome fandome) {
             fandomHubTitle.setText(fandome.getName());
             //setting image URL
-            fandomHubIcon.setImageURI(Uri.parse("imageURL"));
+            fandomHubIcon.setImageURI(Uri.parse("fandome_image"));
         }
 
     }
