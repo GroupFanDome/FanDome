@@ -37,7 +37,6 @@ import java.util.List;
  */
 public class SearchFragment extends Fragment {
     public static final String TAG="SearchFragment";
-    public static final String GALLERY_DETAIL_KEY = "gallery";
     private RecyclerViewAdapterSearch.RecyclerViewClickListener listener;
 
     private EditText searchBar;
