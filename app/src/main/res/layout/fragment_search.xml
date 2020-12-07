@@ -1,15 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:background="#1FADEA"-->
+<!--    android:orientation="vertical"-->
+<!--    tools:context=".fragments.SearchFragment">-->
+
+<!--&lt;!&ndash;    <androidx.appcompat.widget.SearchView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/searchBar"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="300dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@drawable/searchbar_design"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:searchIcon="@drawable/ic_search_bar_blue"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:closeIcon="@drawable/ic_close_out_blue"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:theme="@style/AppSearchView"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvLabel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Find your \nnew favorite \nfandoms"-->
+<!--        android:textColor="#FFF"-->
+<!--        android:textSize="40sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="150dp"-->
+<!--        app:layout_constraintStart_toStartOf="@id/searchBar"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:id="@+id/searchBar"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/searchbar_design"-->
+<!--        android:theme="@style/AppSearchView"-->
+<!--        app:queryHint="Search Here"-->
+<!--        app:searchHintIcon="@drawable/ic_search_bar_blue"-->
+<!--        app:closeIcon="@drawable/ic_close_out_blue"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvLabel"-->
+<!--        app:searchIcon="@drawable/ic_search_bar_blue" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/myList"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/searchBar">-->
+
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#1FADEA"
+    android:orientation="vertical"
     tools:context=".fragments.SearchFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:id="@+id/searchBar"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/searchbar_design"-->
+<!--        android:theme="@style/AppSearchView"-->
+<!--        app:queryHint="Search Here"-->
+<!--        app:searchHintIcon="@drawable/ic_search_bar_blue"-->
+<!--        app:closeIcon="@drawable/ic_close_out_blue"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:searchIcon="@drawable/ic_search_bar_blue" />-->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Search fragment" />
+        android:id="@+id/tvLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find your \nnew favorite \nfandoms"
+        android:textColor="#FFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginTop="150dp"
+        app:layout_constraintStart_toStartOf="@id/conLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/conLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/searchbar_design"
+        android:elevation="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLabel">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_search_bar_blue"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintEnd_toStartOf="@id/searchBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/conLayout" />
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="200dp"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="Search Here!"
+            android:padding="7dp"
+            android:textSize="15sp"
+            android:textColorHint="#93A0E7"
+            android:textColor="#3F51B5"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/conLayout" />
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/conLayout">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

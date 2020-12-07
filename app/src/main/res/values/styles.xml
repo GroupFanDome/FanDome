@@ -11,5 +11,19 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <!-- Text Size -->
+        <item name="android:textSize">20sp</item>
+        <!-- Query Text Color -->
+        <item name="android:textColorPrimary">#3F51B5</item>
+<!--        &lt;!&ndash; Hint Color &ndash;&gt;-->
+<!--        <item name="android:textColorHint">@color/textColorDisabled</item>-->
+        <!-- Icon Color -->
+<!--        <item name="android:tint">#3F51B5</item>-->
+        <!-- Gets rid of the "underline" in the text -->
+<!--        <item name="queryBackground">#FFFF</item>-->
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+<!--        <item name="searchHintIcon">@null</item>-->
+    </style>
 
 </resources>

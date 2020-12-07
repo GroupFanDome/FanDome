@@ -63,7 +63,6 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        public ImageView bg_login_gradient;
         ImageButton fandomHubIcon;
         TextView fandomHubTitle;
 

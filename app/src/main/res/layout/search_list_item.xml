@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchOption"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/hub_search_optionbg"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="8dp">
+
+    <ImageButton
+        android:id="@+id/fandomHubIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_login_gradient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fandomHubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:textColor="#3F51B5"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/fandomHubIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="The Simpsons" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

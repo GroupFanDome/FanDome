@@ -3,8 +3,10 @@ package com.example.fandome.models;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
+import java.io.Serializable;
+
 @ParseClassName("Fandome")
-public class Fandome extends ParseObject  {
+public class Fandome extends ParseObject implements Serializable {
     public static final String KEY_NAME="name";
     public static final String KEY_DESCRIPTION="description";
     public static final String KEY_KEYWORD="keyword";

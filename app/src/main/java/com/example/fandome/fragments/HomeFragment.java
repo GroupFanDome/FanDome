@@ -26,6 +26,9 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment for user home screen
+ */
 public class HomeFragment extends Fragment {
 
     public static final String TAG="HomeFragment";

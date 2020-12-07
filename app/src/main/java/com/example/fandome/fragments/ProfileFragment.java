@@ -84,7 +84,12 @@ public class ProfileFragment extends Fragment {
         fandomeHub = new ArrayList<>();
         adapterFH = new RecyclerViewAdapterFH(getContext(), fandomeHub);
         rvFandomHubs.setAdapter(adapterFH);
-        rvFandomHubs.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Setup layout manager for items with orientation
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        // Optionally customize the position you want to default scroll to
+        layoutManager.scrollToPosition(0);
+        // Attach layout manager to the RecyclerView
+        rvFandomHubs.setLayoutManager(layoutManager);
         queryHubs();
 
 
@@ -98,10 +103,7 @@ public class ProfileFragment extends Fragment {
     private void queryHubs() {
         ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
         followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
-//        ParseQuery<Fandome> hubParseQuery = ParseQuery.getQuery(Fandome.class);
-//        hubParseQuery.whereMatchesKeyInQuery(Fandome.KEY_NAME, Following.KEY_FANDOME, followingParseQuery);
         followingParseQuery.include(Following.KEY_FANDOME);
-//        followingParseQuery.include(Fandome.KEY_NAME);
         followingParseQuery.findInBackground(new FindCallback<Following>() {
             @Override
             public void done(List<Following> follows, ParseException e) {

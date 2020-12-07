@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <!-- Setting Login Activity as the first screen that appears on app start up -->
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
@@ -22,15 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--   Then enter Register Screen if need be     -->
-        <activity android:name=".activities.RegisterActivity">
-
-        </activity>
-
+        <!-- Then enter Register Screen if need be -->
+        <activity android:name=".activities.RegisterActivity"></activity>
         <!-- Then enter Main Activity screen -->
-        <activity android:name=".activities.MainActivity">
-        </activity>
+        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.HubGalleryActivity"></activity>
     </application>
 
 </manifest>
