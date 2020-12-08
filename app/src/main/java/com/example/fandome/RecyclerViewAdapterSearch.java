@@ -20,10 +20,12 @@ import java.util.List;
 
 public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerViewAdapterSearch.ViewHolder> implements Filterable {
     public static final String TAG="RecyclerViewSearch";
+
     private Context context;
     private List<Fandome> fandomeHubs;
     private List<Fandome> fandomeHubsFiltered;
     private RecyclerViewClickListener listener;
+
     public RecyclerViewAdapterSearch(Context context, List<Fandome> fandomeHubs, RecyclerViewClickListener listener) {
         this.context = context;
         this.fandomeHubs = fandomeHubs;
@@ -65,6 +67,9 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
                         }
                     }
                     fandomeHubsFiltered = listFiltered;
+                    if(fandomeHubsFiltered != fandomeHubs){
+                        Log.d(TAG, "list has been changed! " + fandomeHubsFiltered.size());
+                    }
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = fandomeHubsFiltered;
@@ -83,6 +88,7 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
     class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         ImageButton fandomHubIcon;
         TextView fandomHubTitle;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             fandomHubIcon = itemView.findViewById(R.id.fandomHubIcon);
@@ -91,9 +97,11 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
         }
         public void bind(Fandome fandome) {
             fandomHubTitle.setText(fandome.getString("name"));
+            //setting image URL
             ParseFile image = fandome.getParseFile("fandome_image");
             if(image != null){
                 Glide.with(context).load(image.getUrl()).into(fandomHubIcon);
+                Log.d("adapterSearch", "image url is " + image.getUrl());
             }
             fandomHubIcon.setClipToOutline(true);
         }
@@ -103,11 +111,13 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
             Log.d(TAG, "adapter position" + getAdapterPosition());
         }
     }
+
     // Clean all elements of the recycler
     public void clear() {
         fandomeHubs.clear();
         notifyDataSetChanged();
     }
+
     // Add a list of items -- change to type used
     public void addAll(List<Fandome> fandomeHub) {
         fandomeHubs.addAll(fandomeHub);

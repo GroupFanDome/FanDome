@@ -30,8 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_login);
-//        setContentView(R.layout.fragment_profile);
-
 
         //checks if user has previously logged on so they can go straight to main activity
         if (ParseUser.getCurrentUser() != null){
@@ -92,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    //entering the main activity page
+    //entering the main activity screen
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
@@ -101,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    //entering the register activity page
+    //entering the register activity screen
     private void goRegisterActivity() {
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);

@@ -22,10 +22,12 @@
             </intent-filter>
         </activity>
         <!-- Then enter Register Screen if need be -->
-        <activity android:name=".activities.RegisterActivity"></activity>
+        <activity android:name=".activities.RegisterActivity" />
         <!-- Then enter Main Activity screen -->
-        <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.HubGalleryActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.HubGalleryActivity" />
+        <!-- Then enter Main Activity screen from Hub Gallery Screen -->
+        <activity android:name=".activities.HubActivity" />
     </application>
 
 </manifest>

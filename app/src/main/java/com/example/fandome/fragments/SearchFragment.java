@@ -33,6 +33,7 @@ import java.util.List;
  */
 public class SearchFragment extends Fragment {
     public static final String TAG="SearchFragment";
+
     private RecyclerViewAdapterSearch.RecyclerViewClickListener listener;
 
     private EditText searchBar;
@@ -85,6 +86,7 @@ public class SearchFragment extends Fragment {
 //                getHubs();
                 Log.d(TAG, "adapter is now at size " + adapterSearch.getItemCount());
                 adapterSearch.getFilter().filter(s);
+
                 Log.d(TAG, "adapter is finally at size " + adapterSearch.getItemCount());
 
             }

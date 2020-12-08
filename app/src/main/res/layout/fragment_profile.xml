@@ -12,7 +12,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="#1FADEA" />
+        android:background="#1FADEA"/>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
@@ -69,24 +69,28 @@
                                     android:text="Username"
                                     android:textSize="30sp"
                                     android:textStyle="bold" />
+
                                 <TextView
                                     android:id="@+id/profileBio"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="10dp"
+                                    android:text="I watch and read a lot of stuff\n so feel free to talk to me about anything"
+                                    android:textAlignment="center"
                                     android:textColor="#3F51B5"
-                                    android:text="*input bio here*"
                                     android:textSize="20sp" />
+
                                 <TextView
                                     android:id="@+id/fandomeFollowTextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="20dp"
-                                    android:textColor="#3F51B5"
                                     android:text="Fandoms I follow:"
-                                    android:textSize="20sp" />
+                                    android:textColor="#3F51B5"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold|italic" />
                                 <!-- Start of fandom hub scroll view -->
                                 <HorizontalScrollView
                                     android:layout_width="match_parent"

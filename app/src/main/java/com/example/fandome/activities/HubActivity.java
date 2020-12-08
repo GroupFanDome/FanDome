@@ -1,18 +1,14 @@
-package com.example.fandome.fragments;
-
-import android.os.Bundle;
+package com.example.fandome.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.fandome.PostAdapter;
 import com.example.fandome.R;
@@ -28,33 +24,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Fragment for user home screen
+ * Hub activity screen, user can view most recent posts from fandom hub
  */
-public class HomeFragment extends Fragment {
+public class HubActivity extends AppCompatActivity {
 
-    public static final String TAG="HomeFragment";
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_hub);
+//    }
+
+    public static final String TAG = "HubActivity";
     private RecyclerView rvHome;
     private PostAdapter adapter;
     protected SwipeRefreshLayout swipeContainer;
     private List<Post> allPosts;
 
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hub);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        rvHome = view.findViewById(R.id.rvHome);
+        rvHome = findViewById(R.id.rvHome);
 
-        swipeContainer = view.findViewById(R.id.swipeContainer);
+        swipeContainer = findViewById(R.id.swipeContainer);
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -69,20 +62,30 @@ public class HomeFragment extends Fragment {
         });
 
         allPosts = new ArrayList<>();
-        adapter = new PostAdapter(getContext(),allPosts);
+        adapter = new PostAdapter(this,allPosts);
         rvHome.setAdapter(adapter);
-        rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvHome.setLayoutManager(new LinearLayoutManager(this));
+
         queryPosts();
     }
 
     private void queryPosts() {
-        ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
-        followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
+//        String hubTitle = "Title";
+//
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null){
+//            hubTitle = extras.getString(Fandome.KEY_NAME);
+//            Log.i(TAG, "hub name is "+ extras.getString(Fandome.KEY_NAME) );
+//        }
+        String fandomeTitle = getIntent().getStringExtra("fandomeHubName");
+
+        ParseQuery<Fandome> fandomeParseQuery = ParseQuery.getQuery(Fandome.class);
+//        followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
         ParseQuery<Post> postParseQuery = ParseQuery.getQuery(Post.class);
-        postParseQuery.whereMatchesKeyInQuery(Post.KEY_FANDOME, Following.KEY_FANDOME, followingParseQuery);
-        if(Post.KEY_FANDOME ==  Following.KEY_FANDOME){
-            Log.e(TAG, "POST and FOLLOWING key match!");
-        }
+        postParseQuery.whereMatchesKeyInQuery(Post.KEY_FANDOME_NAME, Fandome.KEY_NAME, fandomeParseQuery);
+//        if(Post.KEY_FANDOME_NAME != Fandome.KEY_NAME){
+//            Log.e(TAG, "POST and FANDOME key don't match!");
+//        }
         postParseQuery.include(Post.KEY_USER);
         postParseQuery.include(Post.KEY_FANDOME);
         postParseQuery.addDescendingOrder(Post.KEY_CREATED_AT);
@@ -90,14 +93,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if(e != null){
-                    Log.e("main", "Issue with getting post for fandome",e);
+                    Log.e(TAG, "Issue with getting post for fandom",e);
                     return;
                 }
                 // success
                 adapter.clear();
                 adapter.addAll(posts);
+                Log.d(TAG, "added some posts. adapter is now at size " + adapter.getItemCount());
                 swipeContainer.setRefreshing(false);
             }
         });
     }
+
+
+
 }

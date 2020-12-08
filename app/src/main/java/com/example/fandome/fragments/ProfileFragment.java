@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.fandome.PostAdapter;
 import com.example.fandome.R;
@@ -34,8 +35,9 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
     public static final String TAG="HomeFragment";
-    protected SwipeRefreshLayout swipeContainer;
 
+    protected SwipeRefreshLayout swipeContainer;
+    private TextView profileUsername;
 
     //profile posts info
     private RecyclerView rvHome;
@@ -46,8 +48,6 @@ public class ProfileFragment extends Fragment {
     private RecyclerView rvFandomHubs;
     private RecyclerViewAdapterFH adapterFH;
     private List<Following> fandomeHub;
-
-
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -65,7 +65,10 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvHome = view.findViewById(R.id.rvPosts);
         rvFandomHubs = view.findViewById(R.id.rvFandomHubs);
+        profileUsername = view.findViewById(R.id.profileUsername);
 
+        //there may be a bug that changes this username depending on whos logged in not who the profile belongs to
+        profileUsername.setText(ParseUser.getCurrentUser().getUsername());
 
         swipeContainer = view.findViewById(R.id.swipeContainer);
         // Configure the refreshing colors
@@ -83,20 +86,20 @@ public class ProfileFragment extends Fragment {
 
         fandomeHub = new ArrayList<>();
         adapterFH = new RecyclerViewAdapterFH(getContext(), fandomeHub);
-        rvFandomHubs.setAdapter(adapterFH);
         // Setup layout manager for items with orientation
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         // Optionally customize the position you want to default scroll to
         layoutManager.scrollToPosition(0);
         // Attach layout manager to the RecyclerView
         rvFandomHubs.setLayoutManager(layoutManager);
+        rvFandomHubs.setAdapter(adapterFH);
         queryHubs();
 
 
         allPosts = new ArrayList<>();
         adapter = new PostAdapter(getContext(),allPosts);
-        rvHome.setAdapter(adapter);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvHome.setAdapter(adapter);
         queryPosts();
     }
 
