@@ -9,6 +9,7 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fandome.models.Fandome;
@@ -19,12 +20,10 @@ import java.util.List;
 
 public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerViewAdapterSearch.ViewHolder> implements Filterable {
     public static final String TAG="RecyclerViewSearch";
-
     private Context context;
     private List<Fandome> fandomeHubs;
     private List<Fandome> fandomeHubsFiltered;
     private RecyclerViewClickListener listener;
-
     public RecyclerViewAdapterSearch(Context context, List<Fandome> fandomeHubs, RecyclerViewClickListener listener) {
         this.context = context;
         this.fandomeHubs = fandomeHubs;
@@ -55,6 +54,8 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
                 String Key= constraint.toString();
                 if (Key.isEmpty()){
                     fandomeHubsFiltered = fandomeHubs;
+//                    the following line clears search results when search bar is empty but only after the bar is activated
+//                    fandomeHubsFiltered.clear();
                 }else {
                     List<Fandome> listFiltered = new ArrayList<>();
                     for(Fandome hub: fandomeHubs){
@@ -76,22 +77,18 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
             }
         };
     }
-
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);
     }
-
     class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         ImageButton fandomHubIcon;
         TextView fandomHubTitle;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             fandomHubIcon = itemView.findViewById(R.id.fandomHubIcon);
             fandomHubTitle = itemView.findViewById(R.id.fandomHubTitle);
             itemView.setOnClickListener(this);
         }
-
         public void bind(Fandome fandome) {
             fandomHubTitle.setText(fandome.getString("name"));
             ParseFile image = fandome.getParseFile("fandome_image");
@@ -100,13 +97,12 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
             }
             fandomHubIcon.setClipToOutline(true);
         }
-
         @Override
         public void onClick(View v) {
             listener.onClick(v, getAdapterPosition());
+            Log.d(TAG, "adapter position" + getAdapterPosition());
         }
     }
-
     // Clean all elements of the recycler
     public void clear() {
         fandomeHubs.clear();
@@ -118,16 +114,3 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
         notifyDataSetChanged();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

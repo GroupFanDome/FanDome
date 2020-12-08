@@ -2,21 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hubGalLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#FFD4F1FE"
+    android:orientation="vertical"
     tools:context=".activities.HubGalleryActivity">
 
     <ImageButton
         android:id="@+id/fandomHubIcon"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/bg_login_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/fandomHubTitle"
@@ -31,19 +32,20 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fandomHubIcon"/>
+        app:layout_constraintTop_toBottomOf="@id/fandomHubIcon" />
+
     <TextView
         android:id="@+id/hubBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:textColor="#3F51B5"
         android:text="*input description here*"
+        android:textColor="#3F51B5"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fandomHubTitle"/>
+        app:layout_constraintTop_toBottomOf="@id/fandomHubTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

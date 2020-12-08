@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,14 +15,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.fandome.R;
 import com.example.fandome.RecyclerViewAdapterSearch;
 import com.example.fandome.activities.HubGalleryActivity;
-import com.example.fandome.activities.LoginActivity;
 import com.example.fandome.models.Fandome;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -46,6 +42,8 @@ public class SearchFragment extends Fragment {
     private RecyclerViewAdapterSearch adapterSearch;
     private List<Fandome> fandomeHubList;
 
+    Boolean adapterNew = false;
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -65,31 +63,45 @@ public class SearchFragment extends Fragment {
         searchBar = view.findViewById(R.id.searchBar);
 
         fandomeHubList = new ArrayList<>();
+        setOnClickListener();
         adapterSearch = new RecyclerViewAdapterSearch(getContext(), fandomeHubList, listener);
-        recyclerView.setAdapter(adapterSearch);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapterSearch);
+
+
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                adapterNew = false;
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapterNew = true;
+
+                Log.d(TAG, "adapter is at size " + adapterSearch.getItemCount());
+//                adapterSearch.clear();
+//                getHubs();
+                Log.d(TAG, "adapter is now at size " + adapterSearch.getItemCount());
                 adapterSearch.getFilter().filter(s);
+                Log.d(TAG, "adapter is finally at size " + adapterSearch.getItemCount());
+
             }
             @Override
             public void afterTextChanged(Editable s) {
+//                adapterSearch.clear();
+//                adapterSearch.getFilter().filter(s);
+//                getHubs();
             }
         });
 
         getHubs();
 //        setUpHubSelectedListener();
-        setOnClickListener();
 
     }
 
+    //queries through the hubs being search for
     private void getHubs() {
         ParseQuery<Fandome> fandomeParseQuery = ParseQuery.getQuery(Fandome.class);
         fandomeParseQuery.include(Fandome.KEY_NAME);
@@ -103,6 +115,7 @@ public class SearchFragment extends Fragment {
                 // success
                 adapterSearch.clear();
                 adapterSearch.addAll(hubs);
+                Log.d(TAG, "added some hubs. adapter is now at size " + adapterSearch.getItemCount());
             }
         });
     }
@@ -120,17 +133,5 @@ public class SearchFragment extends Fragment {
         };
     }
 
-//    private void setUpHubSelectedListener() {
-//        recyclerView.onIte
-//        recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                // Launch the detail view passing book as an extra
-//                Intent intent = new Intent(SearchFragment.this, HubGalleryActivity.class);
-//                intent.putExtra(GALLERY_DETAIL_KEY, adapterSearch.getItem(position));
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
 }
