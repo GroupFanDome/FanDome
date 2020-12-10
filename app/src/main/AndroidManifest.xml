@@ -24,10 +24,13 @@
         <!-- Then enter Register Screen if need be -->
         <activity android:name=".activities.RegisterActivity" />
         <!-- Then enter Main Activity screen -->
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity"
+                android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.HubGalleryActivity" />
         <!-- Then enter Main Activity screen from Hub Gallery Screen -->
-        <activity android:name=".activities.HubActivity" />
+        <activity
+            android:name=".activities.HubActivity"
+            android:parentActivityName=".activities.HubGalleryActivity" />
     </application>
 
 </manifest>

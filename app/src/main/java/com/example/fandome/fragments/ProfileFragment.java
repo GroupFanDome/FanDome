@@ -1,5 +1,6 @@
 package com.example.fandome.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import com.example.fandome.PostAdapter;
 import com.example.fandome.R;
 import com.example.fandome.RecyclerViewAdapterFH;
+import com.example.fandome.activities.HubActivity;
+import com.example.fandome.activities.HubGalleryActivity;
 import com.example.fandome.models.Fandome;
 import com.example.fandome.models.Following;
 import com.example.fandome.models.Post;
@@ -48,6 +51,7 @@ public class ProfileFragment extends Fragment {
     private RecyclerView rvFandomHubs;
     private RecyclerViewAdapterFH adapterFH;
     private List<Following> fandomeHub;
+    String imageURL;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -95,7 +99,6 @@ public class ProfileFragment extends Fragment {
         rvFandomHubs.setAdapter(adapterFH);
         queryHubs();
 
-
         allPosts = new ArrayList<>();
         adapter = new PostAdapter(getContext(),allPosts);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -103,6 +106,7 @@ public class ProfileFragment extends Fragment {
         queryPosts();
     }
 
+    //makes queries to backend and populates the followed hubs section IF user has followed any fandom hubs
     private void queryHubs() {
         ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
         followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
@@ -118,11 +122,11 @@ public class ProfileFragment extends Fragment {
                 adapterFH.clear();
                 adapterFH.addAll(follows);
                 swipeContainer.setRefreshing(false);
-
             }
         });
     }
 
+    //TODO: queries all of the user's posts that they themselves have created
     private void queryPosts() {
         ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
         followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());

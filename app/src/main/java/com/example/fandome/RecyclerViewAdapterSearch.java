@@ -1,5 +1,6 @@
 package com.example.fandome;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.fandome.activities.HubActivity;
+import com.example.fandome.activities.HubGalleryActivity;
 import com.example.fandome.models.Fandome;
 import com.example.fandome.models.Following;
 import com.parse.ParseFile;
@@ -25,6 +28,7 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
     private List<Fandome> fandomeHubs;
     private List<Fandome> fandomeHubsFiltered;
     private RecyclerViewClickListener listener;
+    String imageIcon;
 
     public RecyclerViewAdapterSearch(Context context, List<Fandome> fandomeHubs, RecyclerViewClickListener listener) {
         this.context = context;
@@ -82,6 +86,12 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
             }
         };
     }
+
+    //returns the position of the filtered hubs being searched for
+    public Fandome getFandom(int position)
+    {
+        return fandomeHubsFiltered.get(position);
+    }
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);
     }
@@ -101,7 +111,7 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
             ParseFile image = fandome.getParseFile("fandome_image");
             if(image != null){
                 Glide.with(context).load(image.getUrl()).into(fandomHubIcon);
-                Log.d("adapterSearch", "image url is " + image.getUrl());
+                Log.d("adapterSearch", "adapterSearch image url is " + image.getUrl());
             }
             fandomHubIcon.setClipToOutline(true);
         }

@@ -43,9 +43,6 @@ public class SearchFragment extends Fragment {
     private RecyclerViewAdapterSearch adapterSearch;
     private List<Fandome> fandomeHubList;
 
-    Boolean adapterNew = false;
-
-
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -70,37 +67,20 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterSearch);
 
-
-
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                adapterNew = false;
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapterNew = true;
-
-                Log.d(TAG, "adapter is at size " + adapterSearch.getItemCount());
-//                adapterSearch.clear();
-//                getHubs();
-                Log.d(TAG, "adapter is now at size " + adapterSearch.getItemCount());
                 adapterSearch.getFilter().filter(s);
-
-                Log.d(TAG, "adapter is finally at size " + adapterSearch.getItemCount());
-
             }
             @Override
             public void afterTextChanged(Editable s) {
-//                adapterSearch.clear();
-//                adapterSearch.getFilter().filter(s);
-//                getHubs();
             }
         });
 
         getHubs();
-//        setUpHubSelectedListener();
-
     }
 
     //queries through the hubs being search for
@@ -127,10 +107,16 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v, int position) {
                 Intent intent = new Intent(getContext(), HubGalleryActivity.class);
-                intent.putExtra(Fandome.KEY_IMAGEURL, fandomeHubList.get(position).getImageURL());
-                intent.putExtra(Fandome.KEY_NAME, fandomeHubList.get(position).getName());
-                intent.putExtra(Fandome.KEY_DESCRIPTION, fandomeHubList.get(position).getDescription());
-                startActivity(intent);
+
+                intent.putExtra(Fandome.KEY_IMAGEURL, adapterSearch.getFandom(position).getParseFile("fandome_image").getUrl());
+                Log.i(TAG, "the image url in the adapter search is "+ adapterSearch.getFandom(position).getImageURL());
+
+                intent.putExtra(Fandome.KEY_NAME, adapterSearch.getFandom(position).getName());
+                intent.putExtra(Fandome.KEY_DESCRIPTION, adapterSearch.getFandom(position).getDescription());
+
+                Bundle extras = intent.getExtras();
+                Log.i(TAG, "extras for image url is "+ extras.getString(Fandome.KEY_IMAGEURL));
+                getContext().startActivity(intent);
             }
         };
     }

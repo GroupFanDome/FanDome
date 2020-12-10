@@ -26,20 +26,16 @@ import com.parse.ParseFile;
 import java.util.List;
 
 /**
- * View for fandome hub icon gallery on profile fragment screen
+ * Adapter for the user's profile (profile fragment). Controls the user's followed hubs list
  */
 public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdapterFH.ViewHolder>{
 
     private Context context;
     private List<Following> fandomeHub;
-    RequestOptions options;
 
     public RecyclerViewAdapterFH(Context context, List<Following> following) {
         this.context = context;
         this.fandomeHub = following;
-
-//        //Request option for Glide
-//        this.options = new RequestOptions().centerCrop().placeholder(R.drawable.bg_login_gradient);
     }
 
     @NonNull
@@ -51,9 +47,6 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapterFH.ViewHolder holder, int position) {
-//        holder.fandomHubTitle.setText(fandomeHub.get(position).getName());
-//        Glide.with(context).load(fandomeHub.get(position).getImageURL()).apply(options).into(holder.bg_login_gradient);
-
         Following following= fandomeHub.get(position);
         holder.bind(following);
     }
@@ -73,14 +66,16 @@ public class RecyclerViewAdapterFH extends RecyclerView.Adapter<RecyclerViewAdap
             fandomHubTitle = itemView.findViewById(R.id.fandomHubTitle);
         }
         public void bind(Following following) {
+            //setting the title of the hub user is following
             fandomHubTitle.setText(following.getFandome().getString("name"));
             //setting image URL
-            ParseFile image = following.getParseFile("fandome_image");
+            ParseFile image = following.getFandome().getParseFile("fandome_image");
 //            Log.d("adapterFH", "image url is " + image.getUrl());
             if(image != null){
                 Glide.with(context).load(image.getUrl()).into(fandomHubIcon);
-                Log.d("adapterFH", "image url is " + image.getUrl());
+                Log.d("adapterFH", "adapterFH image url is " + image.getUrl());
             }
+            Log.d("adapterFH", "adapterFH image url is " + image.getUrl());
             fandomHubIcon.setClipToOutline(true);
         }
 

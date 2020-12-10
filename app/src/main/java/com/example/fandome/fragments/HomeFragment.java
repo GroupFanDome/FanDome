@@ -80,9 +80,6 @@ public class HomeFragment extends Fragment {
         followingParseQuery.whereEqualTo(Following.KEY_USER, ParseUser.getCurrentUser());
         ParseQuery<Post> postParseQuery = ParseQuery.getQuery(Post.class);
         postParseQuery.whereMatchesKeyInQuery(Post.KEY_FANDOME, Following.KEY_FANDOME, followingParseQuery);
-        if(Post.KEY_FANDOME ==  Following.KEY_FANDOME){
-            Log.e(TAG, "POST and FOLLOWING key match!");
-        }
         postParseQuery.include(Post.KEY_USER);
         postParseQuery.include(Post.KEY_FANDOME);
         postParseQuery.addDescendingOrder(Post.KEY_CREATED_AT);
@@ -100,4 +97,5 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }

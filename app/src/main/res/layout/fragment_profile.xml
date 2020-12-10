@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:background="#1FADEA"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
@@ -106,12 +107,11 @@
                                         android:orientation="horizontal">
                                         <androidx.recyclerview.widget.RecyclerView
                                             android:id="@+id/rvFandomHubs"
-                                            android:scrollbars="horizontal"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_centerVertical="true"
                                             android:layout_centerHorizontal="true"
-                                            android:padding="8dp" />
+                                            android:padding="8dp"/>
                                     </LinearLayout>
                                 </HorizontalScrollView>
                             </LinearLayout>
@@ -124,6 +124,10 @@
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="210dp"-->
+<!--                app:cardBackgroundColor="#1FADEA"/>-->
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>

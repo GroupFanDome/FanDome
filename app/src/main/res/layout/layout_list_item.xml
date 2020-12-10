@@ -4,10 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginRight="10dp">
+
 <!--TODO: find a way to dynamically wrap hub title text-->
-
-<!--        app:cardElevation="1dp"-->
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/card"
                 android:layout_width="wrap_content"
@@ -34,5 +32,3 @@
                 android:textStyle="bold" />
 
 </RelativeLayout>
-<!--app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="5sp"-->

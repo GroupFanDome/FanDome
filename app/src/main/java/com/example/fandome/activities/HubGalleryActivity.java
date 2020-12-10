@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fandome.R;
+import com.example.fandome.RecyclerViewAdapterSearch;
 import com.example.fandome.fragments.SearchFragment;
 import com.example.fandome.models.Fandome;
 import com.parse.ParseFile;
@@ -23,12 +26,14 @@ import com.parse.ParseFile;
 public class HubGalleryActivity extends AppCompatActivity {
 
     public static final String TAG = "HubGalleryActivity";
-    ImageButton fandomHubIcon;
-    TextView fandomHubTitle;
-    TextView hubBio;
 
-//    TODO: Hubs may not load because there may need to be an adapter that loads images for them. search tab items load
-//    TODO: and between that screen and hub activity/profile they do not have an adapter
+    private ImageButton fandomHubIcon;
+    private TextView fandomHubTitle;
+    private TextView hubBio;
+    private ImageView backArrow;
+
+    String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,24 +42,37 @@ public class HubGalleryActivity extends AppCompatActivity {
         fandomHubIcon = findViewById(R.id.fandomHubIcon);
         fandomHubTitle = findViewById(R.id.fandomHubTitle);
         hubBio = findViewById(R.id.hubBio);
+        backArrow = findViewById(R.id.backArrow);
 
-        String hubIconURL = "image.png";
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, " Back arrow pressed! ");
+                onBackPressed();
+            }
+        });
+
+        //placeholders for the hub image icon, title, and description
+        String imageIcon = "image.png";
         String hubTitle = "Title";
         String hubBioDesc = "bio";
 
         Bundle extras = getIntent().getExtras();
+        Log.i(TAG, "extras for image url is "+ extras.getString(Fandome.KEY_IMAGEURL));
+
         if(extras != null){
-//            Log.i(TAG, "extras is "+ extras);
-            hubIconURL = extras.getString(Fandome.KEY_IMAGEURL);
+            imageIcon = extras.getString(Fandome.KEY_IMAGEURL);
+            Log.i(TAG, "the image url from the fandome key "+ getIntent().getStringExtra(Fandome.KEY_IMAGEURL));
+
             hubTitle = extras.getString(Fandome.KEY_NAME);
             hubBioDesc = extras.getString(Fandome.KEY_DESCRIPTION);
         }
-        Fandome fandome = new Fandome();
-        ParseFile image = fandome.getParseFile("fandome_image");
-        if(image != null){
-        Log.i(TAG, "hubIconURL is "+ hubIconURL);
-        Glide.with(this).load(hubIconURL).into(fandomHubIcon);
-        }
+
+        //loading the extras intent from the search adapter class
+        Glide.with(this).load(imageIcon).into(fandomHubIcon);
+        Log.d(TAG, "image url is we got from adapter search intent is " + imageIcon);
+        Log.d(TAG, "hub title we got from extra intent() is " + hubTitle);
+
         fandomHubIcon.setClipToOutline(true);
 
         fandomHubTitle.setText(hubTitle);
@@ -72,10 +90,12 @@ public class HubGalleryActivity extends AppCompatActivity {
     //entering the hub activity screen
     private void goHubActivity() {
         Intent i = new Intent(this, HubActivity.class);
-        getIntent().putExtra("fandomeHubName", fandomHubTitle.getText().toString());
+
+        title = fandomHubTitle.getText().toString();
+        i.putExtra("value", title);
         Log.i(TAG, "fandome hub title is "+ fandomHubTitle.getText().toString());
+
         startActivity(i);
     }
-
 
 }
