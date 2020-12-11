@@ -6,10 +6,4 @@
         <item name="colorAccent">@color/main_blue_light</item>
     </style>
 
-    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">30sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-
 </resources>

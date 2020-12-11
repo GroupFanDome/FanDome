@@ -2,6 +2,7 @@ package com.example.fandome.models;
 
 import com.example.fandome.TimeFormatter;
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -13,8 +14,8 @@ public class Post extends ParseObject  {
     public static final String KEY_BODY="body";
     public static final String KEY_USER="user";
     public static final String KEY_FANDOME="fandome";
-    public static final String KEY_FANDOME_NAME = "name";
     public static final String KEY_CREATED_AT = "createdAt";
+    public static final String KEY_POST_IMAGE = "post_image";
 
     public String getBody(){
         return getString(KEY_BODY);
@@ -40,9 +41,14 @@ public class Post extends ParseObject  {
         put(KEY_FANDOME, fandome);
     }
 
-    public String getFandomeName (){
-        return getFandome().getString(KEY_FANDOME_NAME);
+    public ParseFile getPostImage() {
+        return getParseFile(KEY_POST_IMAGE);
     }
+    public void setPostImage(ParseFile parseFile){
+        put(KEY_POST_IMAGE, parseFile);
+    }
+
+
     public String getDateCreated() {
         String Format = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat format = new SimpleDateFormat(Format, Locale.ENGLISH);

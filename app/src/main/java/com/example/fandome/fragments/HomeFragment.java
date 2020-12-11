@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fandome.PostAdapter;
+import com.example.fandome.adapters.PostAdapter;
 import com.example.fandome.R;
 import com.example.fandome.models.Following;
 import com.example.fandome.models.Post;
@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+
     }
 
     @Override
@@ -64,12 +65,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         allPosts = new ArrayList<>();
         adapter = new PostAdapter(getContext(),allPosts);
         rvHome.setAdapter(adapter);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPosts();
     }
+
 
     private void queryPosts() {
         ParseQuery<Following> followingParseQuery = ParseQuery.getQuery(Following.class);
@@ -83,7 +86,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if(e != null){
-                    Log.e("main", "Issue with getting post for fandome",e);
+                    Log.e("main", "kkkk Issue with getting post for fandome",e);
                     return;
                 }
                 // success

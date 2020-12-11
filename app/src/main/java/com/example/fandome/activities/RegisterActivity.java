@@ -1,8 +1,11 @@
-package com.example.fandome;
+package com.example.fandome.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.fandome.R;
+
 /*
  * A register screen that offers user registration through user's provided information
  */
