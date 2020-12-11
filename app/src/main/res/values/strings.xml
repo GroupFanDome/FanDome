@@ -5,4 +5,11 @@
     <string name="post">Post</string>
     <string name="postHint">What\'s up, tell us about it!</string>
     <string name="userimage">UserImage</string>
+    <string name="username">Username</string>
+    <string name="sign_in_with_username_or_email">Sign in with username or email</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="name">Name</string>
 </resources>

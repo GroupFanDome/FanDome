@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.fandome.R;
 import com.example.fandome.models.Post;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
 
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         private TextView tvFandome;
         private ImageView ivUserImage;
         private ImageView ivPostImage;
+        private TextView tvHubLabel;
 
 
         public ViewHolder(@NonNull View itemView){
@@ -61,15 +63,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvFandome = itemView.findViewById(R.id.tvFandome);
+            tvHubLabel = itemView.findViewById(R.id.tvHubLabel);
             ivUserImage = itemView.findViewById(R.id.ivUserImage);
             ivPostImage = itemView.findViewById(R.id.ivPostImage);
+
         }
 
         public void bind(Post post) {
             tvUsername.setText(post.getUser().getUsername());
             tvTimeStamp.setText(post.getDateCreated());
             tvBody.setText(post.getBody());
-            tvFandome.setText(post.getFandome().getString("name"));
+            ParseObject fandome_object = post.getFandome();
+            if(fandome_object != null){
+                tvHubLabel.setVisibility(View.VISIBLE);
+                tvFandome.setVisibility(View.VISIBLE);
+                tvFandome.setText(fandome_object.getString("name"));
+            }
 
             ParseFile user_image = post.getUser().getParseFile("user_image");
             if(user_image != null){

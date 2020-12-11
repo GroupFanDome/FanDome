@@ -18,7 +18,7 @@ public class Following extends ParseObject {
     public ParseObject getFandome(){
         return getParseObject(KEY_FANDOME);
     }
-    public void setKeyFandome(ParseObject fandome){
+    public void setFandome(ParseObject fandome){
         put(KEY_FANDOME, fandome);
     }
 }

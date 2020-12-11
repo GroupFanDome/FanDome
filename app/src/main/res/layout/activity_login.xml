@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,18 +16,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/usernameInputBox"
         app:layout_constraintStart_toStartOf="@+id/usernameInputBox"
         app:layout_constraintTop_toBottomOf="@id/appTitle"
-        android:text="Username" />
+        android:text="@string/username" />
 
     <EditText
         android:id="@+id/usernameInputBox"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:background="@drawable/edittextview_border"
-        android:hint="Sign in with username or email"
+        android:hint="@string/sign_in_with_username_or_email"
         android:padding="10dp"
         android:layout_marginTop="5dp"
         android:textColor="#FFFFFF"
@@ -42,38 +44,38 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="15dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/usernameInputBox"
         app:layout_constraintBottom_toTopOf="@+id/passwordInputBox"
         app:layout_constraintStart_toStartOf="@+id/passwordInputBox"
-        android:text="Password" />
+        android:text="@string/password" />
 
     <EditText
         android:id="@+id/passwordInputBox"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:background="@drawable/edittextview_border"
-        android:hint="Enter password"
+        android:hint="@string/enter_password"
         android:padding="10dp"
         android:layout_marginTop="5dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#A1FFFFFF"
         android:textSize="12sp"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTitle" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="84dp"
-        android:background="#FFFFFF"
-        android:text="LOGIN"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/rounded_button_bg"
+        android:text="@string/login"
         android:textColor="#132274"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInputBox" />
 
@@ -81,13 +83,12 @@
         android:id="@+id/registerButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="56dp"
-        android:background="#FFFFFF"
-        android:text="REGISTER"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/rounded_button_bg"
+        android:text="@string/register"
         android:textColor="#1B2666"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/loginButton"
-        app:layout_constraintTop_toTopOf="@+id/loginButton" />
+        app:layout_constraintTop_toTopOf="@+id/signUpButton" />
 
     <ImageView
         android:id="@+id/fandomeIcon"
@@ -97,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_home_feed_icon" />
+        app:srcCompat="@drawable/ic_home_feed_icon_24" />
 
     <TextView
         android:id="@+id/appTitle"
@@ -105,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:fontFamily="@font/courgette_regular"
-        android:text="fandome"
+        android:text="@string/app_name"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"

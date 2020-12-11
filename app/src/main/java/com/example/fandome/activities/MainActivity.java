@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,6 +74,19 @@ public class MainActivity extends AppCompatActivity {
         });
         // set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.action_logout){
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+                    Log.d(TAG, "Logout"+currentUser);
+                    currentUser.logOut();
+                    goLoginActivity();
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -81,18 +95,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.action_logout){
-            ParseUser.logOut();
-            goLoginActivity();
-        }
-        return true;
-    }
-
     private void goLoginActivity() {
-        //Intent i = new Intent(this,LoginActivity.class);
-        //startActivity(i);
+        Intent i = new Intent(this,LoginActivity.class);
+        startActivity(i);
         finish();
     }
 }

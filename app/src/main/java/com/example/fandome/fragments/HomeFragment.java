@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if(e != null){
-                    Log.e("main", "kkkk Issue with getting post for fandome",e);
+                    Log.e("main", "Issue with getting post for fandome",e);
                     return;
                 }
                 // success

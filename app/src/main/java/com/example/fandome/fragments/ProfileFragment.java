@@ -2,59 +2,40 @@ package com.example.fandome.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fandome.R;
+import com.example.fandome.adapters.PostAdapter;
+import com.example.fandome.models.Following;
+import com.example.fandome.models.Post;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public static final String TAG="ProfileFragment";
+    private RecyclerView rvProfilePost;
+    private PostAdapter profilePostAdapter;
+    protected SwipeRefreshLayout swipeContainer;
+    private List<Post> allPosts;
 
     public ProfileFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -62,5 +43,55 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        rvProfilePost = view.findViewById(R.id.rvProfilePost);
+
+        swipeContainer = view.findViewById(R.id.swipeContainerProfile);
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "Fetching new data");
+                queryPosts();
+            }
+        });
+
+
+        allPosts = new ArrayList<>();
+        profilePostAdapter = new PostAdapter(getContext(),allPosts);
+        rvProfilePost.setAdapter(profilePostAdapter);
+        rvProfilePost.setLayoutManager(new LinearLayoutManager(getContext()));
+        queryPosts();
+    }
+
+
+    private void queryPosts() {
+        ParseQuery<Post> postParseQuery = ParseQuery.getQuery(Post.class);
+        postParseQuery.include(Post.KEY_USER);
+        postParseQuery.include(Post.KEY_FANDOME);
+        postParseQuery.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        postParseQuery.addDescendingOrder(Post.KEY_CREATED_AT);
+        postParseQuery.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if(e != null){
+                    Log.e("main", "Issue with getting post for user",e);
+                    return;
+                }
+                // success
+                profilePostAdapter.clear();
+                profilePostAdapter.addAll(posts);
+                swipeContainer.setRefreshing(false);
+            }
+        });
     }
 }

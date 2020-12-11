@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.fandome.R;
 import com.parse.LogInCallback;
@@ -16,35 +20,87 @@ import com.parse.ParseUser;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String TAG = "LoginActivity";
+    private EditText usernameInputBox;
+    private EditText passwordInputBox;
+    private Button loginButton;
+    private Button registerButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         if(ParseUser.getCurrentUser() != null){
-            Log.i("login", "Logged in as "+ParseUser.getCurrentUser().getUsername());
+            Log.i(TAG, "Logged in as "+ParseUser.getCurrentUser().getUsername());
             goMainActivity();
         }
-        loginUser("TheTester","tester1234");
-    }
 
-    private void loginUser(final String username, String password) {
-        ParseUser.logInInBackground(username, password,new LogInCallback(){
+        usernameInputBox = findViewById(R.id.usernameInputBox);
+        passwordInputBox = findViewById(R.id.passwordInputBox);
+        loginButton = findViewById(R.id.signUpButton);
+        registerButton = findViewById(R.id.registerButton);
 
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void done(ParseUser user, ParseException e) {
-                if(e != null){
-                    Log.e("login", "Issue with Login "+e,e);
-                    return;
+            public void onClick(View v) {
+                Log.i(TAG, "login button clicked!");
+                String username = usernameInputBox.getText().toString();
+                String password = passwordInputBox.getText().toString();
+
+                loginUser(username, password);
+
+                if (username.isEmpty() && password.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Please log in with a valid username and password. (Username and password cannot be empty)", Toast.LENGTH_SHORT).show();
+                } else if(username.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Please log in with a valid username. (Username cannot be empty)", Toast.LENGTH_SHORT).show();
+                } else if(password.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Please log in with a valid password. (Password cannot be empty)", Toast.LENGTH_SHORT).show();
                 }
-                //if login successful then navigate to main activity
-                Log.i("login", "Login Successful");
-                goMainActivity();
+            }
+        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "register button clicked!");
+                goRegisterActivity();
             }
         });
     }
+
+    //This is where we let our user login in depending on if their login credentials are correct
+    private void loginUser(String username, String password) {
+        Log.i(TAG, "attempting to log in user " + username);
+        ParseUser.logInInBackground(username, password, new LogInCallback() {
+            //checking if logging in was an issue and if so then it has an error that we check for
+            @Override
+            public void done(ParseUser user, ParseException e) {
+                if (e != null){
+                    Log.e(TAG, "Issue with login", e);
+                    Toast.makeText(LoginActivity.this,
+                            "Issue with logIn",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //navigates to main activity if the user successfully signs in properly
+                goMainActivity();
+                //Toasts visually show the user that they were able to log in with message @ bottom of screen
+                Toast.makeText(LoginActivity.this,
+                        "Logged in as "+ ParseUser.getCurrentUser().getUsername(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+    //entering the main activity screen
     private void goMainActivity() {
         Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+        finish();
+    }
+    //entering the register activity screen
+    private void goRegisterActivity() {
+        Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
         finish();
     }
